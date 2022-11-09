@@ -17,13 +17,18 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="25"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7">
+            <MenuItem Header="File" >
+                <MenuItem Header="TODO"></MenuItem>
+            </MenuItem>
+        </Menu>
         
         
     </Grid>
