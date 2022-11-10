@@ -5,8 +5,71 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Olympics"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="500" Width="1050">
+
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7">
+            <MenuItem Header="File" >
+                <MenuItem Header="TODO"></MenuItem>
+            </MenuItem>
+        </Menu>
+        
+        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Left" Margin="10" FontSize="30" FontWeight="Bold" VerticalAlignment="Center">Athletes of the Olympics Games</Label>
+
+        <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom" Margin="10">
+            <Label FontSize="16">Name</Label>
+            <TextBox Text="{Binding Name}" Height="30" FontSize="16" MaxLines="1"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" Margin="10" >
+            <Label FontSize="16">Sex</Label>
+            <ComboBox ItemsSource="{Binding ListaSessi}" SelectedItem="{Binding Sex}" Height="30" FontSize="16"></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="2" VerticalAlignment="Bottom" Margin="10" >
+            <Label FontSize="16">Games</Label>
+            <ComboBox ItemsSource="{Binding ListaGames}" SelectedItem="{Binding Games}" Height="30" FontSize="16"></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="3" VerticalAlignment="Bottom" Margin="10" >
+            <Label FontSize="16">Sport</Label>
+            <ComboBox ItemsSource="{Binding ListaSport}" SelectedItem="{Binding Sport}" Height="30" FontSize="16"></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="4" VerticalAlignment="Bottom" Margin="10" >
+            <Label FontSize="16">Event</Label>
+            <ComboBox ItemsSource="{Binding ListaEvent}" SelectedItem="{Binding Event}" Height="30" FontSize="16"></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="5" VerticalAlignment="Bottom" Margin="10" >
+            <Label FontSize="16">Medal</Label>
+            <ComboBox ItemsSource="{Binding ListaMedal}" SelectedItem="{Binding Medal}" Height="30" FontSize="16"></ComboBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="6" VerticalAlignment="Bottom" Margin="10">
+            <Button  Content="Azzera filtri" Height="40" Margin="10 0 10 0" FontSize="14" FontWeight="Normal"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="6" VerticalAlignment="Bottom" Margin="10">
+            <Image Height="70" Source="/Image/logo.png"></Image>
+        </StackPanel>
+        <DataGrid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="7"></DataGrid>
+
+
+    </Grid>
+
+
+    <!--<Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -29,7 +92,8 @@
                 <MenuItem Header="TODO"></MenuItem>
             </MenuItem>
         </Menu>
+        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" FontSize="30" FontWeight="Bold" VerticalAlignment="Center">Athletes of the Olympics Games</Label>
         
         
-    </Grid>
+    </Grid>-->
 </Window>
