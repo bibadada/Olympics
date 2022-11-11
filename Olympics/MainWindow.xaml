@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Olympics"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="1050">
+        Title="Olympics" Height="580" Width="1050" Icon="Image/logo1.png">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -22,7 +22,8 @@
             <RowDefinition Height="100"/>
             <RowDefinition Height="100"/>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="80"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7">
             <MenuItem Header="File" >
@@ -64,6 +65,18 @@
             <Image Height="70" Source="/Image/logo.png"></Image>
         </StackPanel>
         <DataGrid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="7"></DataGrid>
+        <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="7" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Margin="0 0 10 0" Content="&lt;&lt;" Height="25" Width="60" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Button Margin="0 0 10 0" Content="&lt;" Height="25" Width="60" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Button Margin="0 0 10 0" Content="&gt;" Height="25" Width="60" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Button Margin="0 0 10 0" Content="&gt;&gt;" Height="25" Width="60" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            
+        </StackPanel>
+        <Label Content="{Binding LabelPagine}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="7" HorizontalAlignment="Center" />
+        <StackPanel Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="2" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,20,0">
+            <Label FontSize="14">Righe per pagina</Label>
+            <ComboBox ItemsSource="{Binding ListaRighePagina}" SelectedItem="{Binding RighePagina}" Width="90" FontSize="16" ></ComboBox>
+        </StackPanel>
 
 
     </Grid>
