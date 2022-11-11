@@ -21,11 +21,17 @@ namespace Olympics
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainWindowViewModel vm;
         public MainWindow()
         {
             InitializeComponent();
-            MainWindowViewModel vm = new MainWindowViewModel();
+            vm = new MainWindowViewModel();
             DataContext = vm;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            vm.Setup();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Olympics.Models;
 
 namespace Olympics.ViewModels
 {
@@ -43,6 +44,7 @@ namespace Olympics.ViewModels
             }
         }
 
+
         private string _filtroSport;
 
         public string FiltroSport
@@ -73,6 +75,15 @@ namespace Olympics.ViewModels
             }
         }
 
+        private int _righePagina;
+
+        public int RighePagina
+        {
+            get { return _righePagina; }
+            set { _righePagina = value;
+                NotifyPropretyChanged("RighePagina");
+            }
+        }
 
         #endregion
 
@@ -136,8 +147,42 @@ namespace Olympics.ViewModels
             }
         }
 
+        private List<Partecipation> _listaPartecipation;
+
+        public List<Partecipation> ListaPartecipation
+        {
+            get { return _listaPartecipation; }
+            set { _listaPartecipation = value;
+                NotifyPropretyChanged("ListaPartecipation");
+            }
+        }
+
+        private List<int> _listaRighePagina;
+
+        public List<int> ListaRighePagina
+        {
+            get { return _listaRighePagina; }
+            set { _listaRighePagina = value;
+                NotifyPropretyChanged("ListaRighePagina");
+            }
+        }
+
+
 
         #endregion
+
+
+        internal void Setup()
+        {
+            ListaRighePagina = new List<int> { 10, 20, 50 };
+            RighePagina = 10;
+
+            //TODO popolamenti vari iniziali
+            
+        }
+
+
+
 
     }
 }
