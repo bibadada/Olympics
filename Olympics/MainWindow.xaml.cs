@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Olympics.ViewModels;
 
 namespace Olympics
 {
@@ -23,6 +24,8 @@ namespace Olympics
         public MainWindow()
         {
             InitializeComponent();
+            MainWindowViewModel vm = new MainWindowViewModel();
+            DataContext = vm;
         }
     }
 }

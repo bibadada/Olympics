@@ -27,7 +27,7 @@
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7">
             <MenuItem Header="File" >
-                <MenuItem Header="TODO"></MenuItem>
+                <MenuItem Header="Exit"></MenuItem>
             </MenuItem>
         </Menu>
         
@@ -35,27 +35,27 @@
 
         <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom" Margin="10">
             <Label FontSize="16">Name</Label>
-            <TextBox Text="{Binding Name}" Height="30" FontSize="16" MaxLines="1"></TextBox>
+            <TextBox Text="{Binding FiltroName}" Height="30" FontSize="16" MaxLines="1"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" Margin="10" >
             <Label FontSize="16">Sex</Label>
-            <ComboBox ItemsSource="{Binding ListaSessi}" SelectedItem="{Binding Sex}" Height="30" FontSize="16"></ComboBox>
+            <ComboBox ItemsSource="{Binding ListaSessi}" SelectedItem="{Binding FiltroSex}" Height="30" FontSize="16"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="2" VerticalAlignment="Bottom" Margin="10" >
             <Label FontSize="16">Games</Label>
-            <ComboBox ItemsSource="{Binding ListaGames}" SelectedItem="{Binding Games}" Height="30" FontSize="16"></ComboBox>
+            <ComboBox ItemsSource="{Binding ListaGames}" SelectedItem="{Binding FiltroGames}" Height="30" FontSize="16"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="3" VerticalAlignment="Bottom" Margin="10" >
             <Label FontSize="16">Sport</Label>
-            <ComboBox ItemsSource="{Binding ListaSport}" SelectedItem="{Binding Sport}" Height="30" FontSize="16"></ComboBox>
+            <ComboBox ItemsSource="{Binding ListaSport}" SelectedItem="{Binding FiltroSport}" Height="30" FontSize="16"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="4" VerticalAlignment="Bottom" Margin="10" >
             <Label FontSize="16">Event</Label>
-            <ComboBox ItemsSource="{Binding ListaEvent}" SelectedItem="{Binding Event}" Height="30" FontSize="16"></ComboBox>
+            <ComboBox ItemsSource="{Binding ListaEvent}" SelectedItem="{Binding FiltroEvent}" Height="30" FontSize="16"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="5" VerticalAlignment="Bottom" Margin="10" >
             <Label FontSize="16">Medal</Label>
-            <ComboBox ItemsSource="{Binding ListaMedal}" SelectedItem="{Binding Medal}" Height="30" FontSize="16"></ComboBox>
+            <ComboBox ItemsSource="{Binding ListaMedal}" SelectedItem="{Binding FiltroMedal}" Height="30" FontSize="16"></ComboBox>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="6" VerticalAlignment="Bottom" Margin="10">
@@ -64,7 +64,25 @@
         <StackPanel Grid.Row="1" Grid.Column="6" VerticalAlignment="Bottom" Margin="10">
             <Image Height="70" Source="/Image/logo.png"></Image>
         </StackPanel>
-        <DataGrid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="7"></DataGrid>
+        <DataGrid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="7" Margin="10" ItemsSource="{Binding ListaPartecipation}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False">
+            <DataGrid.Columns>
+            <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+            <DataGridTextColumn Header="IdAthlete" Binding="{Binding IdAthlete}"/>
+            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+            <DataGridTextColumn Header="Sex" Binding="{Binding Sex}"/>
+            <DataGridTextColumn Header="Age" Binding="{Binding Age}"/>
+            <DataGridTextColumn Header="Height" Binding="{Binding Height}"/>
+            <DataGridTextColumn Header="Weight" Binding="{Binding Weight}"/>
+            <DataGridTextColumn Header="NOC" Binding="{Binding NOC}"/>
+            <DataGridTextColumn Header="Games" Binding="{Binding Games}"/>
+            <DataGridTextColumn Header="Year" Binding="{Binding Year}"/>
+            <DataGridTextColumn Header="Season" Binding="{Binding Season}"/>
+            <DataGridTextColumn Header="City" Binding="{Binding City}"/>
+            <DataGridTextColumn Header="Sport" Binding="{Binding Sport}"/>
+            <DataGridTextColumn Header="Event" Binding="{Binding Event}"/>
+            <DataGridTextColumn Header="Medal" Binding="{Binding Medal}"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="7" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Margin="0 0 10 0" Content="&lt;&lt;" Height="25" Width="60" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             <Button Margin="0 0 10 0" Content="&lt;" Height="25" Width="60" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
