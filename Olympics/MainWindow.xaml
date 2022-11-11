@@ -39,7 +39,7 @@
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" Margin="10" >
             <Label FontSize="16">Sex</Label>
-            <ComboBox ItemsSource="{Binding ListaSessi}" SelectedItem="{Binding FiltroSex}" Height="30" FontSize="16"></ComboBox>
+            <ComboBox ItemsSource="{Binding ListaSex}" SelectedItem="{Binding FiltroSex}" Height="30" FontSize="16"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="2" VerticalAlignment="Bottom" Margin="10" >
             <Label FontSize="16">Games</Label>

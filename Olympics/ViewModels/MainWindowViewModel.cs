@@ -76,7 +76,68 @@ namespace Olympics.ViewModels
 
         #endregion
 
+        #region BindingSorgenti
 
+        private List<string> _listaSex;
+
+        public List<string> ListaSex
+        {
+            get { return _listaSex; }
+            set { _listaSex = value;
+                NotifyPropretyChanged("ListaSex");
+            }
+        }
+
+        private List<string> _listaGames;
+
+        public List<string> ListaGames
+        {
+            get { return _listaGames; }
+            set
+            {
+                _listaGames = value;
+                NotifyPropretyChanged("ListaGames");
+            }
+        }
+
+        private List<string> _listaSport;
+
+        public List<string> ListaSport
+        {
+            get { return _listaSport; }
+            set
+            {
+                _listaSport = value;
+                NotifyPropretyChanged("ListaSport");
+            }
+        }
+
+        private List<string> _listaEvent;
+
+        public List<string> ListaEvent
+        {
+            get { return _listaEvent; }
+            set
+            {
+                _listaEvent = value;
+                NotifyPropretyChanged("ListaEvent");
+            }
+        }
+
+        private List<string> _listaMedal;
+
+        public List<string> ListaMedal
+        {
+            get { return _listaMedal; }
+            set
+            {
+                _listaMedal = value;
+                NotifyPropretyChanged("ListaMedal");
+            }
+        }
+
+
+        #endregion
 
     }
 }
