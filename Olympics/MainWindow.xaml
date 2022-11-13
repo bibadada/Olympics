@@ -59,7 +59,7 @@
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="6" VerticalAlignment="Bottom" Margin="10">
-            <Button  Content="Azzera filtri" Height="40" Margin="10 0 10 0" FontSize="14" FontWeight="Normal"/>
+            <Button  Content="Azzera filtri" Height="40" Margin="10 0 10 0" FontSize="14" FontWeight="Normal" Click="Button_Click"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="6" VerticalAlignment="Bottom" Margin="10">
             <Image Height="70" Source="/Image/logo.png"></Image>

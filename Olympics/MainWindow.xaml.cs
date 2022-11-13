@@ -33,5 +33,10 @@ namespace Olympics
         {
             vm.Setup();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            vm.AzzeraFiltri();
+        }
     }
 }

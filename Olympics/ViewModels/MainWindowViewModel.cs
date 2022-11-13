@@ -50,7 +50,6 @@ namespace Olympics.ViewModels
             }
         }
 
-
         private string _filtroSport;
 
         public string FiltroSport
@@ -199,30 +198,39 @@ namespace Olympics.ViewModels
             set { _pagina = value; }
         }
 
-        private int _pagineTotali;
-
-        public int PagineTotali
-        {
-            get { return _pagineTotali; }
-            set { _pagineTotali = value; }
-        }
+        private int PagineTotali;
 
 
 
-        internal void Setup()
+        public void Setup()
         {
             ListaRighePagina = new List<int> { 10, 20, 50 };
             RighePagina = 10;
+            //PagineTotali = 777;
             Pagina = 1;
-            ListaSex = Partecipations.GetDistinctList("Sex");
+            ListaSex =   Partecipations.GetDistinctList("Sex");
             ListaGames = Partecipations.GetDistinctList("Games");
             ListaMedal = Partecipations.GetDistinctList("Medal");
-            //TODO popolamenti vari iniziali
+            LabelPagine = buildStringLabel();
+            GetData();
 
         }
 
+        public void AzzeraFiltri()
+        {
+            GetData();
+        }
 
+        private string buildStringLabel()
+        {
+            return "Pagina " + Pagina + " di " + PagineTotali;
+        }
 
+        private void GetData()
+        {
+            ListaPartecipation = Partecipations.GetPartecipations(FiltroName, FiltroSex, FiltroGames, FiltroSport, FiltroEvent, FiltroMedal, Pagina, RighePagina, ref PagineTotali);
+            //PagineTotali = Partecipations.GetNumberPartecipations(FiltroName, FiltroSex, FiltroGames, FiltroSport, FiltroEvent, FiltroMedal);
 
+        }
     }
 }

@@ -5,11 +5,15 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Olympics.Models;
 
 namespace Olympics.Controllers
 {
     public static class Partecipations
     {
+        /// <summary>
+        /// Stringa di connessione al DB
+        /// </summary>
         private static string connectionString { get; } = ConfigurationManager.ConnectionStrings["Database"].ConnectionString;
 
         /// <summary>
@@ -117,6 +121,116 @@ namespace Olympics.Controllers
             }
 
         }
+
+
+        public static List<Partecipation> GetPartecipations(string Name, string Sex, string Games, string Sport, string Event, string Medal, int Pagina, int RighePagina, ref int PagineTotali)
+        {
+            List<Partecipation> retVal = new List<Partecipation>();
+            if (Name == null)
+                Name = "%";
+            Pagina--;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.Connection = connection;
+                    cmd.CommandText = "SELECT * FROM Athletes WHERE (Name LIKE @Name) ";
+                    cmd.Parameters.AddWithValue("@Name", "%" + Name + "%");
+                    
+                    if (Sex != null)
+                    {
+                        cmd.CommandText += " AND (Sex = @Sex)";
+                        cmd.Parameters.AddWithValue("@Sex", Sex);
+                    }
+                    if (Games != null)
+                    {
+                        cmd.CommandText += " AND (Games = @Games)";
+                        cmd.Parameters.AddWithValue("@Games", Games);
+                    }
+                    if (Sport != null)
+                    {
+                        cmd.CommandText += " AND (Sport = @Sport)";
+                        cmd.Parameters.AddWithValue("@Sport", Sport);
+                    }
+                    if (Event != null)
+                    {
+                        cmd.CommandText += " AND (Event = @Event)";
+                        cmd.Parameters.AddWithValue("@Event", Event);
+                    }
+                    if (Medal != null)
+                    {
+                        cmd.CommandText += " AND (Medal = @Medal)";
+                        cmd.Parameters.AddWithValue("@Medal", Medal);
+                    }
+
+                    //cmd1 restituisce il totale delle righe
+                    SqlCommand cmd1 = new SqlCommand();
+                    cmd1.Connection = connection;
+                    cmd1.CommandText = cmd.CommandText.Replace("*", "COUNT(*)");
+                    
+                    cmd1.Parameters.AddWithValue("@Name", "%" + Name + "%");
+                    cmd1.Parameters.AddWithValue("@Sex", Sex);
+                    cmd1.Parameters.AddWithValue("@Games", Games);
+                    cmd1.Parameters.AddWithValue("@Event", Event);
+                    cmd1.Parameters.AddWithValue("@Sport", Sport);
+                    cmd1.Parameters.AddWithValue("@Medal", Medal);
+
+                    //PagineTotali += (int)cmd1.ExecuteScalar() + 1;
+
+
+
+
+
+
+                    cmd.CommandText += " ORDER BY Id";
+                    cmd.CommandText += @"   OFFSET @off ROWS
+                                            FETCH NEXT @RighePagina ROWS ONLY";
+                    cmd.Parameters.AddWithValue("@off", Pagina * RighePagina);
+                    cmd.Parameters.AddWithValue("@RighePagina", RighePagina);
+
+                    using(SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            retVal.Add(new Partecipation
+                            {
+                                
+                                Id = (long)reader["Id"],
+                                IdAthlete = reader.IsDBNull(reader.GetOrdinal("IdAthlete")) ? null : (long?)reader["IdAthlete"],
+                                Name = (string)reader["Name"],
+                                Sex = (string)reader["Sex"],
+                                Age = reader.IsDBNull(reader.GetOrdinal("Age")) ? null : (int?)reader["Age"],
+                                Height = reader.IsDBNull(reader.GetOrdinal("Height")) ? null : (int?)reader["Height"],
+                                Weight = reader.IsDBNull(reader.GetOrdinal("Weight")) ? null : (int?)reader["Weight"],
+                                NOC = (string)reader["NOC"],
+                                Games = (string)reader["Games"],
+                                Year = reader.IsDBNull(reader.GetOrdinal("Year")) ? null : (int?)reader["Year"],
+                                Season = (string)reader["Season"],
+                                City = (string)reader["City"],
+                                Sport = (string)reader["Sport"],
+                                Event = (string)reader["Event"],
+                                Medal = reader.IsDBNull(reader.GetOrdinal("Medal")) ? null : (string)reader["Medal"]
+                                
+                            });
+
+                        }
+                    }
+                    return retVal;
+
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
+        }
+
+
+        
 
     }
 }

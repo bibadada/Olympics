@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Olympics.Models
 {
-    class Partecipation
+    public class Partecipation
     {
         public long Id { get; set; }
         public long? IdAthlete { get; set; }
         public string Name { get; set; }
-        public char Sex { get; set; }
+        public string Sex { get; set; }
         public int? Age { get; set; }
         public int? Height { get; set; }
         public int? Weight { get; set; }
