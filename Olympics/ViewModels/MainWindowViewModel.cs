@@ -211,7 +211,6 @@ namespace Olympics.ViewModels
             ListaSex =   Partecipations.GetDistinctList("Sex");
             ListaGames = Partecipations.GetDistinctList("Games");
             ListaMedal = Partecipations.GetDistinctList("Medal");
-            LabelPagine = buildStringLabel();
             GetData();
 
         }
@@ -221,16 +220,17 @@ namespace Olympics.ViewModels
             GetData();
         }
 
-        private string buildStringLabel()
+        private void buildStringLabel()
         {
-            return "Pagina " + Pagina + " di " + PagineTotali;
+            LabelPagine = "Pagina " + Pagina + " di " + PagineTotali;
         }
 
         private void GetData()
         {
-            ListaPartecipation = Partecipations.GetPartecipations(FiltroName, FiltroSex, FiltroGames, FiltroSport, FiltroEvent, FiltroMedal, Pagina, RighePagina, ref PagineTotali);
-            //PagineTotali = Partecipations.GetNumberPartecipations(FiltroName, FiltroSex, FiltroGames, FiltroSport, FiltroEvent, FiltroMedal);
-
+            ListaPartecipation = Partecipations.GetPartecipations(FiltroName, FiltroSex, FiltroGames, FiltroSport, FiltroEvent, FiltroMedal, Pagina, RighePagina/*, ref PagineTotali*/);
+            PagineTotali = (int) Partecipations.GetNumberPartecipations(FiltroName, FiltroSex, FiltroGames, FiltroSport, FiltroEvent, FiltroMedal) / RighePagina;
+            PagineTotali = PagineTotali + 1;
+            buildStringLabel();
         }
     }
 }
