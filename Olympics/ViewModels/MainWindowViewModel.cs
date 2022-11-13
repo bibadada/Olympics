@@ -31,7 +31,8 @@ namespace Olympics.ViewModels
                 _filtroSex = value;
                 NotifyPropretyChanged("FiltroSex");
                 Pagina = 1;
-                GetData();
+                if (value != null)
+                    GetData();
             }
         }
 
@@ -43,11 +44,13 @@ namespace Olympics.ViewModels
             set { _filtroGames = value;
                 NotifyPropretyChanged("FiltroGames");
                 if (value != null)
+                {
                     ListaSport = Partecipations.GetDistinctSport(value);
+                    GetData();
+                }
                 FiltroEvent = null;
                 FiltroSport = null;
                 Pagina = 1;
-                GetData();
             }
         }
 
@@ -61,7 +64,8 @@ namespace Olympics.ViewModels
                 if(value != null)
                     ListaEvent = Partecipations.GetDistinctEvent(value);
                 Pagina = 1;
-                GetData();
+                if (value != null)
+                    GetData();
             }
         }
 
@@ -73,7 +77,8 @@ namespace Olympics.ViewModels
             set { _filtroEvent = value;
                 NotifyPropretyChanged("FiltroEvent");
                 Pagina = 1;
-                GetData();
+                if (value != null)
+                    GetData();
             }
         }
 
@@ -85,7 +90,8 @@ namespace Olympics.ViewModels
             set { _filtroMedal = value;
                 NotifyPropretyChanged("FiltroMedal");
                 Pagina = 1;
-                GetData();
+                if (value != null)
+                    GetData();
             }
         }
 
@@ -284,13 +290,12 @@ namespace Olympics.ViewModels
 
         public void AzzeraFiltri()
         {
-            FiltroName = null;
             FiltroSex = null;
             FiltroGames = null;
             FiltroSport = null;
             FiltroEvent = null;
             FiltroMedal = null;
-            GetData();
+            FiltroName = null;
         }
 
         private void buildStringLabel()
