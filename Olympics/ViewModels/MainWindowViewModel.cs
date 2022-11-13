@@ -16,8 +16,8 @@ namespace Olympics.ViewModels
             { 
                 _filtroName = value;
                 NotifyPropretyChanged("FiltroName");
-                Pagina = 1;
                 GetData();
+                Pagina = 1;
             }
         }
 
@@ -30,9 +30,9 @@ namespace Olympics.ViewModels
             { 
                 _filtroSex = value;
                 NotifyPropretyChanged("FiltroSex");
-                Pagina = 1;
                 if (value != null)
                     GetData();
+                Pagina = 1;
             }
         }
 
@@ -63,9 +63,9 @@ namespace Olympics.ViewModels
                 NotifyPropretyChanged("FiltroSport");
                 if(value != null)
                     ListaEvent = Partecipations.GetDistinctEvent(value);
-                Pagina = 1;
                 if (value != null)
                     GetData();
+                Pagina = 1;
             }
         }
 
@@ -76,9 +76,9 @@ namespace Olympics.ViewModels
             get { return _filtroEvent; }
             set { _filtroEvent = value;
                 NotifyPropretyChanged("FiltroEvent");
-                Pagina = 1;
                 if (value != null)
                     GetData();
+                Pagina = 1;
             }
         }
 
@@ -89,9 +89,9 @@ namespace Olympics.ViewModels
             get { return _filtroMedal; }
             set { _filtroMedal = value;
                 NotifyPropretyChanged("FiltroMedal");
-                Pagina = 1;
                 if (value != null)
                     GetData();
+                Pagina = 1;
             }
         }
 
@@ -101,9 +101,9 @@ namespace Olympics.ViewModels
         {
             get { return _righePagina; }
             set { _righePagina = value;
-                NotifyPropretyChanged("RighePagina");
                 Pagina = 1;
                 GetData();
+                NotifyPropretyChanged("RighePagina");
             }
         }
 
@@ -253,7 +253,6 @@ namespace Olympics.ViewModels
             set
             {
                 _pagina = value;
-                //GetData();
                 PrimaEnabled = true;
                 IndietroEnabled = true;
                 AvantiEnabled = true;
@@ -284,12 +283,13 @@ namespace Olympics.ViewModels
             ListaGames = Partecipations.GetDistinctList("Games");
             ListaMedal = Partecipations.GetDistinctList("Medal");
             RighePagina = 10;
-            Pagina = 1;
+            //Pagina = 1;
 
         }
 
         public void AzzeraFiltri()
         {
+            Pagina = 1;
             FiltroSex = null;
             FiltroGames = null;
             FiltroSport = null;
@@ -303,13 +303,8 @@ namespace Olympics.ViewModels
             if (RigheTotali > 0)
                 LabelPagine = "Pagina " + Pagina + " di " + PagineTotali;
             else
-            {
                 LabelPagine = "Pagina 0 di 0";
-                AvantiEnabled = false;
-                UltimaEnabled = false;
-                PrimaEnabled = false;
-                IndietroEnabled = false;
-            }
+
         }
 
         private void GetData()
