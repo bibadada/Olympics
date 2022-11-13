@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Olympics.Controllers;
 using Olympics.Models;
 
@@ -20,6 +16,8 @@ namespace Olympics.ViewModels
             { 
                 _filtroName = value;
                 NotifyPropretyChanged("FiltroName");
+                Pagina = 1;
+                GetData();
             }
         }
 
@@ -32,6 +30,8 @@ namespace Olympics.ViewModels
             { 
                 _filtroSex = value;
                 NotifyPropretyChanged("FiltroSex");
+                Pagina = 1;
+                GetData();
             }
         }
 
@@ -46,7 +46,8 @@ namespace Olympics.ViewModels
                     ListaSport = Partecipations.GetDistinctSport(value);
                 FiltroEvent = null;
                 FiltroSport = null;
-                //QUERY
+                Pagina = 1;
+                GetData();
             }
         }
 
@@ -59,7 +60,8 @@ namespace Olympics.ViewModels
                 NotifyPropretyChanged("FiltroSport");
                 if(value != null)
                     ListaEvent = Partecipations.GetDistinctEvent(value);
-                //QUERY
+                Pagina = 1;
+                GetData();
             }
         }
 
@@ -70,6 +72,8 @@ namespace Olympics.ViewModels
             get { return _filtroEvent; }
             set { _filtroEvent = value;
                 NotifyPropretyChanged("FiltroEvent");
+                Pagina = 1;
+                GetData();
             }
         }
 
@@ -80,6 +84,8 @@ namespace Olympics.ViewModels
             get { return _filtroMedal; }
             set { _filtroMedal = value;
                 NotifyPropretyChanged("FiltroMedal");
+                Pagina = 1;
+                GetData();
             }
         }
 
@@ -90,6 +96,8 @@ namespace Olympics.ViewModels
             get { return _righePagina; }
             set { _righePagina = value;
                 NotifyPropretyChanged("RighePagina");
+                Pagina = 1;
+                GetData();
             }
         }
 
@@ -179,7 +187,7 @@ namespace Olympics.ViewModels
 
         #endregion
 
-
+        #region BindingUX
         private string _lablePagine;
 
         public string LabelPagine
@@ -190,13 +198,74 @@ namespace Olympics.ViewModels
             }
         }
 
+        private bool _primaEnabled;
+
+        public bool PrimaEnabled
+        {
+            get { return _primaEnabled; }
+            set { _primaEnabled = value;
+                NotifyPropretyChanged("PrimaEnabled");
+            }
+        }
+
+        private bool _avantiEnabled;
+
+        public bool AvantiEnabled
+        {
+            get { return _avantiEnabled; }
+            set { _avantiEnabled = value;
+                NotifyPropretyChanged("AvantiEnabled");
+            }
+        }
+
+        private bool _indietroEnabled;
+
+        public bool IndietroEnabled
+        {
+            get { return _indietroEnabled; }
+            set { _indietroEnabled = value;
+                NotifyPropretyChanged("IndietroEnabled");
+            }
+        }
+
+        private bool _ultimaEnabled;
+
+        public bool UltimaEnabled
+        {
+            get { return _ultimaEnabled; }
+            set { _ultimaEnabled = value;
+                NotifyPropretyChanged("UltimaEnabled");
+            }
+        }
+        #endregion
+
         private int _pagina;
 
         public int Pagina
         {
             get { return _pagina; }
-            set { _pagina = value; }
+            set
+            {
+                _pagina = value;
+                //GetData();
+                PrimaEnabled = true;
+                IndietroEnabled = true;
+                AvantiEnabled = true;
+                UltimaEnabled = true;
+                if (value == 1)
+                {
+                    PrimaEnabled = false;
+                    IndietroEnabled = false;
+                }
+                if (value == PagineTotali)
+                {
+                    AvantiEnabled = false;
+                    UltimaEnabled = false;
+                }
+                buildStringLabel();
+            }
         }
+
 
         private int PagineTotali;
 
@@ -205,18 +274,22 @@ namespace Olympics.ViewModels
         public void Setup()
         {
             ListaRighePagina = new List<int> { 10, 20, 50 };
-            RighePagina = 10;
-            //PagineTotali = 777;
             Pagina = 1;
             ListaSex =   Partecipations.GetDistinctList("Sex");
             ListaGames = Partecipations.GetDistinctList("Games");
             ListaMedal = Partecipations.GetDistinctList("Medal");
-            GetData();
+            RighePagina = 10;
 
         }
 
         public void AzzeraFiltri()
         {
+            FiltroName = null;
+            FiltroSex = null;
+            FiltroGames = null;
+            FiltroSport = null;
+            FiltroEvent = null;
+            FiltroMedal = null;
             GetData();
         }
 
@@ -227,10 +300,34 @@ namespace Olympics.ViewModels
 
         private void GetData()
         {
-            ListaPartecipation = Partecipations.GetPartecipations(FiltroName, FiltroSex, FiltroGames, FiltroSport, FiltroEvent, FiltroMedal, Pagina, RighePagina/*, ref PagineTotali*/);
+            ListaPartecipation = Partecipations.GetPartecipations(FiltroName, FiltroSex, FiltroGames, FiltroSport, FiltroEvent, FiltroMedal, Pagina, RighePagina);
             PagineTotali = (int) Partecipations.GetNumberPartecipations(FiltroName, FiltroSex, FiltroGames, FiltroSport, FiltroEvent, FiltroMedal) / RighePagina;
-            PagineTotali = PagineTotali + 1;
-            buildStringLabel();
+            PagineTotali++;
+            buildStringLabel(); 
+        }
+
+        public void Avanti()
+        {
+            Pagina++;
+            GetData();
+        }
+
+        public void Indietro()
+        {
+            Pagina--;
+            GetData();
+        }
+
+        public void Prima()
+        {
+            Pagina = 1;
+            GetData();
+        }
+
+        public void Ultima()
+        {
+            Pagina = PagineTotali;
+            GetData();
         }
     }
 }

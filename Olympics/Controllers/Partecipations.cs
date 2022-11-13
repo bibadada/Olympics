@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using Olympics.Models;
 
 namespace Olympics.Controllers
@@ -124,7 +120,7 @@ namespace Olympics.Controllers
         }
 
 
-        public static List<Partecipation> GetPartecipations(string Name, string Sex, string Games, string Sport, string Event, string Medal, int Pagina, int RighePagina/*, ref int PagineTotali*/)
+        public static List<Partecipation> GetPartecipations(string Name, string Sex, string Games, string Sport, string Event, string Medal, int Pagina, int RighePagina)
         {
             List<Partecipation> retVal = new List<Partecipation>();
             if (Name == null)
@@ -166,29 +162,6 @@ namespace Olympics.Controllers
                         cmd.CommandText += " AND (Medal = @Medal)";
                         cmd.Parameters.AddWithValue("@Medal", Medal);
                     }
-
-                    
-                    /*
-                    //cmd1 restituisce il totale delle righe
-                    SqlCommand cmd1 = new SqlCommand();
-                    cmd1.Connection = connection;
-                    cmd1.CommandText = cmd.CommandText.Replace("*", "COUNT(*)");
-                    
-                    cmd1.Parameters.AddWithValue("@Name", "%" + Name + "%");
-                    
-                    cmd1.Parameters.AddWithValue("@Sex", Sex);
-                    cmd1.Parameters.AddWithValue("@Games", Games);
-                    cmd1.Parameters.AddWithValue("@Event", Event);
-                    cmd1.Parameters.AddWithValue("@Sport", Sport);
-                    cmd1.Parameters.AddWithValue("@Medal", Medal);
-
-                    MessageBox.Show(cmd1.CommandText);
-                    PagineTotali = (int)cmd1.ExecuteScalar() + 1;
-
-                    */
-
-
-
 
                     cmd.CommandText += " ORDER BY Id";
                     cmd.CommandText += @"   OFFSET @off ROWS
@@ -234,7 +207,7 @@ namespace Olympics.Controllers
             }
         }
 
-        public static float GetNumberPartecipations(string Name, string Sex, string Games, string Sport, string Event, string Medal/*, int Pagina, int RighePagina, ref int PagineTotali*/)
+        public static float GetNumberPartecipations(string Name, string Sex, string Games, string Sport, string Event, string Medal)
         {
             if (Name == null)
                 Name = "%";
@@ -276,29 +249,6 @@ namespace Olympics.Controllers
                     }
 
                     return (int)cmd.ExecuteScalar();
-                    
-                    
-                    /*
-                     
-                    //cmd1 restituisce il totale delle righe
-                    SqlCommand cmd1 = new SqlCommand();
-                    cmd1.Connection = connection;
-                    cmd1.CommandText = cmd.CommandText.Replace("*", "COUNT(*)");
-                    
-                    cmd1.Parameters.AddWithValue("@Name", "%" + Name + "%");
-                    
-                    cmd1.Parameters.AddWithValue("@Sex", Sex);
-                    cmd1.Parameters.AddWithValue("@Games", Games);
-                    cmd1.Parameters.AddWithValue("@Event", Event);
-                    cmd1.Parameters.AddWithValue("@Sport", Sport);
-                    cmd1.Parameters.AddWithValue("@Medal", Medal);
-
-                    MessageBox.Show(cmd1.CommandText);
-                    PagineTotali = (int)cmd1.ExecuteScalar() + 1;
-
-                    */
-
-
 
                 }
                 catch (Exception)
