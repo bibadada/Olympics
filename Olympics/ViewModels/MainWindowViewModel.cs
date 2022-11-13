@@ -266,7 +266,7 @@ namespace Olympics.ViewModels
             }
         }
 
-
+        private int RigheTotali;
         private int PagineTotali;
 
 
@@ -274,11 +274,11 @@ namespace Olympics.ViewModels
         public void Setup()
         {
             ListaRighePagina = new List<int> { 10, 20, 50 };
-            Pagina = 1;
             ListaSex =   Partecipations.GetDistinctList("Sex");
             ListaGames = Partecipations.GetDistinctList("Games");
             ListaMedal = Partecipations.GetDistinctList("Medal");
             RighePagina = 10;
+            Pagina = 1;
 
         }
 
@@ -295,13 +295,23 @@ namespace Olympics.ViewModels
 
         private void buildStringLabel()
         {
-            LabelPagine = "Pagina " + Pagina + " di " + PagineTotali;
+            if (RigheTotali > 0)
+                LabelPagine = "Pagina " + Pagina + " di " + PagineTotali;
+            else
+            {
+                LabelPagine = "Pagina 0 di 0";
+                AvantiEnabled = false;
+                UltimaEnabled = false;
+                PrimaEnabled = false;
+                IndietroEnabled = false;
+            }
         }
 
         private void GetData()
         {
             ListaPartecipation = Partecipations.GetPartecipations(FiltroName, FiltroSex, FiltroGames, FiltroSport, FiltroEvent, FiltroMedal, Pagina, RighePagina);
-            PagineTotali = (int) Partecipations.GetNumberPartecipations(FiltroName, FiltroSex, FiltroGames, FiltroSport, FiltroEvent, FiltroMedal) / RighePagina;
+            RigheTotali = Partecipations.GetNumberPartecipations(FiltroName, FiltroSex, FiltroGames, FiltroSport, FiltroEvent, FiltroMedal);
+            PagineTotali = RigheTotali / RighePagina;
             PagineTotali++;
             buildStringLabel(); 
         }

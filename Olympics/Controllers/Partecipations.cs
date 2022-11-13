@@ -207,7 +207,7 @@ namespace Olympics.Controllers
             }
         }
 
-        public static float GetNumberPartecipations(string Name, string Sex, string Games, string Sport, string Event, string Medal)
+        public static int GetNumberPartecipations(string Name, string Sex, string Games, string Sport, string Event, string Medal)
         {
             if (Name == null)
                 Name = "%";
