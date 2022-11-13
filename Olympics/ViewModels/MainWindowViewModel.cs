@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Olympics.Controllers;
 using Olympics.Models;
 
 namespace Olympics.ViewModels
@@ -41,6 +42,11 @@ namespace Olympics.ViewModels
             get { return _filtroGames; }
             set { _filtroGames = value;
                 NotifyPropretyChanged("FiltroGames");
+                if (value != null)
+                    ListaSport = Partecipations.GetDistinctSport(value);
+                FiltroEvent = null;
+                FiltroSport = null;
+                //QUERY
             }
         }
 
@@ -52,6 +58,9 @@ namespace Olympics.ViewModels
             get { return _filtroSport; }
             set { _filtroSport = value;
                 NotifyPropretyChanged("FiltroSport");
+                if(value != null)
+                    ListaEvent = Partecipations.GetDistinctEvent(value);
+                //QUERY
             }
         }
 
@@ -172,13 +181,44 @@ namespace Olympics.ViewModels
         #endregion
 
 
+        private string _lablePagine;
+
+        public string LabelPagine
+        {
+            get { return _lablePagine; }
+            set { _lablePagine = value;
+                NotifyPropretyChanged("LabelPagine");
+            }
+        }
+
+        private int _pagina;
+
+        public int Pagina
+        {
+            get { return _pagina; }
+            set { _pagina = value; }
+        }
+
+        private int _pagineTotali;
+
+        public int PagineTotali
+        {
+            get { return _pagineTotali; }
+            set { _pagineTotali = value; }
+        }
+
+
+
         internal void Setup()
         {
             ListaRighePagina = new List<int> { 10, 20, 50 };
             RighePagina = 10;
-
+            Pagina = 1;
+            ListaSex = Partecipations.GetDistinctList("Sex");
+            ListaGames = Partecipations.GetDistinctList("Games");
+            ListaMedal = Partecipations.GetDistinctList("Medal");
             //TODO popolamenti vari iniziali
-            
+
         }
 
 
