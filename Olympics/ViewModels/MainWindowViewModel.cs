@@ -70,7 +70,6 @@ namespace Olympics.ViewModels
                     ListaEvent = Partecipations.GetDistinctEvent(value, FiltroGames);
                     GetData();
                 }
-
                 Pagina = 1;
             }
         }
@@ -148,7 +147,10 @@ namespace Olympics.ViewModels
             {
                 _listaSport = value;
                 NotifyPropretyChanged("ListaSport");
-                
+                if (value == null)
+                    FiltroSportEnabled = false;
+                else
+                    FiltroSportEnabled = true;
             }
         }
 
@@ -161,6 +163,10 @@ namespace Olympics.ViewModels
             {
                 _listaEvent = value;
                 NotifyPropretyChanged("ListaEvent");
+                if (value == null)
+                    FiltroEventEnabled = false;
+                else
+                    FiltroEventEnabled = true;
             }
         }
 
