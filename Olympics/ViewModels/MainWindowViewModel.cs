@@ -62,7 +62,7 @@ namespace Olympics.ViewModels
             set { _filtroSport = value;
                 NotifyPropretyChanged("FiltroSport");
                 if(value != null)
-                    ListaEvent = Partecipations.GetDistinctEvent(value);
+                    ListaEvent = Partecipations.GetDistinctEvent(value, FiltroGames);
                 if (value != null)
                     GetData();
                 Pagina = 1;

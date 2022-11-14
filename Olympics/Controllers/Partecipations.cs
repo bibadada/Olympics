@@ -91,7 +91,7 @@ namespace Olympics.Controllers
         /// </summary>
         /// <param name="Sport">Parametro per il quale si crea il vincolo per logica SELECT DISTINCT, inserito in condizione WHERE</param>
         /// <returns>Lista di stringhe della colonna</returns>
-        public static List<string> GetDistinctEvent(string Sport)
+        public static List<string> GetDistinctEvent(string Sport, string Games)
         {
             List<string> retVal = new List<string>();
 
@@ -102,8 +102,9 @@ namespace Olympics.Controllers
                     connection.Open();
                     SqlCommand cmd = new SqlCommand();
                     cmd.Connection = connection;
-                    cmd.CommandText = @"SELECT DISTINCT Event FROM Athletes WHERE Sport = @Sport ORDER BY Event";
+                    cmd.CommandText = @"SELECT DISTINCT Event FROM Athletes WHERE Sport = @Sport AND Games = @Games ORDER BY Event";
                     cmd.Parameters.AddWithValue("@Sport", Sport);
+                    cmd.Parameters.AddWithValue("@Games", Games);
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())

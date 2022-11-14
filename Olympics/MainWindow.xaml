@@ -87,10 +87,10 @@
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="7" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Margin="0 0 10 0" Content="&lt;&lt;" Height="25" Width="60" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_Prima" IsEnabled="{Binding PrimaEnabled}"/>
-            <Button Margin="0 0 10 0" Content="&lt;" Height="25" Width="60" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_Indietro" IsEnabled="{Binding IndietroEnabled}"/>
-            <Button Margin="0 0 10 0" Content="&gt;" Height="25" Width="60" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_Avanti" IsEnabled="{Binding AvantiEnabled}"/>
-            <Button Margin="0 0 10 0" Content="&gt;&gt;" Height="25" Width="60" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_Ultima" IsEnabled="{Binding UltimaEnabled}"/>
+            <Button Margin="0 0 10 0" Content="&lt;&lt;" Height="25" Width="60" HorizontalAlignment="Center" FontSize="16"  FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_Prima" IsEnabled="{Binding PrimaEnabled}"/>
+            <Button Margin="0 0 10 0" Content="&lt;" Height="25" Width="60" HorizontalAlignment="Center" FontSize="16"      FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_Indietro" IsEnabled="{Binding IndietroEnabled}"/>
+            <Button Margin="0 0 10 0" Content="&gt;" Height="25" Width="60" HorizontalAlignment="Center" FontSize="16"      FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_Avanti" IsEnabled="{Binding AvantiEnabled}"/>
+            <Button Margin="0 0 10 0" Content="&gt;&gt;" Height="25" Width="60" HorizontalAlignment="Center" FontSize="16"  FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_Ultima" IsEnabled="{Binding UltimaEnabled}"/>
             
         </StackPanel>
         <Label Content="{Binding LabelPagine}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="7" HorizontalAlignment="Center" />
