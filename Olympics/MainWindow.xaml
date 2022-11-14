@@ -50,11 +50,11 @@
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="3" VerticalAlignment="Bottom" Margin="10" >
             <Label FontSize="16">Sport</Label>
-            <ComboBox ItemsSource="{Binding ListaSport}" SelectedItem="{Binding FiltroSport}" Height="30" FontSize="16"></ComboBox>
+            <ComboBox ItemsSource="{Binding ListaSport}" SelectedItem="{Binding FiltroSport}" IsEnabled="{Binding FiltroSportEnabled}" Height="30" FontSize="16"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="4" VerticalAlignment="Bottom" Margin="10" >
             <Label FontSize="16">Event</Label>
-            <ComboBox ItemsSource="{Binding ListaEvent}" SelectedItem="{Binding FiltroEvent}" Height="30" FontSize="16"></ComboBox>
+            <ComboBox ItemsSource="{Binding ListaEvent}" SelectedItem="{Binding FiltroEvent}" IsEnabled="{Binding FiltroEventEnabled}" Height="30" FontSize="16"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="5" VerticalAlignment="Bottom" Margin="10" >
             <Label FontSize="16">Medal</Label>

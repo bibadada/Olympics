@@ -48,7 +48,11 @@ namespace Olympics.ViewModels
                     ListaSport = Partecipations.GetDistinctSport(value);
                     GetData();
                 }
+                else
+                    ListaSport = null;
+
                 FiltroEvent = null;
+                ListaEvent = null;
                 FiltroSport = null;
                 Pagina = 1;
             }
@@ -62,9 +66,11 @@ namespace Olympics.ViewModels
             set { _filtroSport = value;
                 NotifyPropretyChanged("FiltroSport");
                 if(value != null)
+                {
                     ListaEvent = Partecipations.GetDistinctEvent(value, FiltroGames);
-                if (value != null)
                     GetData();
+                }
+
                 Pagina = 1;
             }
         }
@@ -142,6 +148,7 @@ namespace Olympics.ViewModels
             {
                 _listaSport = value;
                 NotifyPropretyChanged("ListaSport");
+                
             }
         }
 
@@ -243,6 +250,30 @@ namespace Olympics.ViewModels
                 NotifyPropretyChanged("UltimaEnabled");
             }
         }
+
+        private bool _filtroSportEnabled;
+
+        public bool FiltroSportEnabled
+        {
+            get { return _filtroSportEnabled; }
+            set { _filtroSportEnabled = value;
+                NotifyPropretyChanged("FiltroSportEnabled");
+            }
+        }
+
+        private bool _filtroEventEnabled;
+
+        public bool FiltroEventEnabled
+        {
+            get { return _filtroEventEnabled; }
+            set
+            {
+                _filtroEventEnabled = value;
+                NotifyPropretyChanged("FiltroEventEnabled");
+            }
+        }
+
+
         #endregion
 
         private int _pagina;
