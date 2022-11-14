@@ -52,9 +52,9 @@ namespace Olympics.Controllers
         /// <summary>
         /// Metodo di accesso al database per popolazione della comboBox vincolata Sport
         /// </summary>
-        /// <param name="Game">Parametro per il quale si crea il vincolo per logica SELECT DISTINCT, inserito in condizione WHERE</param>
+        /// <param name="Games">Parametro per il quale si crea il vincolo per logica SELECT DISTINCT, inserito in condizione WHERE</param>
         /// <returns>Lista di stringhe della colonna</returns>
-        public static List<string> GetDistinctSport(string Game)
+        public static List<string> GetDistinctSport(string Games)
         {
             List<string> retVal = new List<string>();
 
@@ -66,7 +66,7 @@ namespace Olympics.Controllers
                     SqlCommand cmd = new SqlCommand();
                     cmd.Connection = connection;
                     cmd.CommandText = @"SELECT DISTINCT Sport FROM Athletes WHERE Games = @Game ORDER BY Sport";
-                    cmd.Parameters.AddWithValue("@Game", Game);
+                    cmd.Parameters.AddWithValue("@Game", Games);
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -87,7 +87,7 @@ namespace Olympics.Controllers
         }
 
         /// <summary>
-        /// Metodo di accesso al database per popolazione della comboBox vincolata Event
+        /// Metodo di accesso al database per popolazione della comboBox vincolata Event e Games
         /// </summary>
         /// <param name="Sport">Parametro per il quale si crea il vincolo per logica SELECT DISTINCT, inserito in condizione WHERE</param>
         /// <returns>Lista di stringhe della colonna</returns>
