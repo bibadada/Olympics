@@ -14,7 +14,7 @@ namespace Olympics.ViewModels
             get { return _filtroName; }
             set
             { 
-                _filtroName = value;
+                _filtroName = value?.Replace("*", " ");
                 NotifyPropretyChanged("FiltroName");
                 GetData();
                 Pagina = 1;
