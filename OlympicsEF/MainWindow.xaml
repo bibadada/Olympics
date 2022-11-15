@@ -7,8 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <DataGrid ItemsSource="{Binding Dati}">
-            
+        <DataGrid ItemsSource="{Binding Dati}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nome" Binding="{Binding AthletesNF.Name}"/>
+                <DataGridTextColumn Header="Medal" Binding="{Binding Medal1}"/>
+            </DataGrid.Columns>            
         </DataGrid>
     </Grid>
 </Window>

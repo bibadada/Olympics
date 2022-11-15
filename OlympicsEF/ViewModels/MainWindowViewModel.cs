@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OlympicsEF.Models;
+using System.Data.Entity;
 
 namespace OlympicsEF.ViewModels
 {
     class MainWindowViewModel
     {
-        private List<athlete> _dati;
+        private List<Medal> _dati;
 
-        public List<athlete> Dati
+        public List<Medal> Dati
         {
             get { return _dati; }
             set { _dati = value; }
@@ -21,7 +22,8 @@ namespace OlympicsEF.ViewModels
         {
             using(OlympicsContext context = new OlympicsContext())
             {
-                Dati = context.athletes
+                /*
+                List<athlete> athletes = context.athletes
                     //.Where(a => a.IdAthlete == 7 && a.Year == 1992)
                     .Where(a => a.NOC.Contains("ITA"))
                     .OrderBy(ob => ob.IdAthlete).ThenByDescending(ob=> ob.Id)
@@ -40,10 +42,55 @@ namespace OlympicsEF.ViewModels
                     .Average(a => a.Age);
 
                 //Età massima medagliati
-                double? co = context.athletes
+                int co = context.athletes
                     .Where(q => q.Medal != null)
                     .Where(q => q.Age != null)
                     .Count();
+
+                //Elenco nazioni partecipanti nel 2012
+                var nazioni = context.athletes
+                    .Where(q => q.Year == 2012)
+                    .Select(s => new Nazione
+                    {
+                        NOC = s.NOC //Equivalente a: (quando anonimo l'oggetto creato)
+                        //s.NOC
+                    }).Distinct().OrderBy(ob => ob.NOC).ToList();
+                Dati = nazioni;
+
+                var p = context.athletes.Where(q => q.Year == 2012)
+                    .GroupBy(gb => new
+                    {
+                        gb.NOC
+                    })
+                    .Select(s => new
+                    { 
+                        s.Key.NOC, Partecipations = s.Count()
+                    }).Where(q => q.Partecipations > 100)
+                    .OrderBy(ob => ob.NOC)
+                    .ToList();
+
+                
+
+                //Tutti i medagliati
+                var q1 = context.AthletesNFs//.Include(i => i.Medals)
+                    .Where(q => q.Medals.Count() > 0)
+                    .ToList();
+
+                //Tutti i medagliati d'oro
+                var q2 = context.AthletesNFs
+                    .Where(q => q.Medals.Any(a => a.Medal1 == "Gold"))
+                    .ToList();
+
+
+                List<Medal> q3 = context.Medals
+                    .Include(i => i.AthletesNF)
+                    .ToList();
+                
+                Dati = q3;
+                */
+
+                //var es1 = context.
+
             }
         }
 
